@@ -1,0 +1,55 @@
+{% extends 'main/base.html' %} {% load static %} {% block title %}Главная{% endblock %} {% block content %}
+<div class="hero-section">
+    <div class="hero-content text-center">
+        <img src="{% static 'img/logo.png' %}" alt="Логотип" class="logo mb-2" style="margin-top: -2.0cm;">
+
+        <div class="title-container show" style="margin-top: 0.5cm;">
+            <h1 class="mb-3">Художественная школа "Щука" в Калуге</h1>
+            <p class="lead mb-3">Частная художественная школа с академическим подходом к преподаванию</p>
+        </div>
+
+        <div class="about-section show">
+            <h2 class="mb-4">О школе:</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="feature-card feature-item show">
+                        <h3>Занимаемся с детьми от 4 до 18 лет</h3>
+                        <p>Для разного возраста разные группы и предметы</p>
+                    </div>
+                    <div class="feature-card feature-item show">
+                        <h3>Присоединиться можно в любое время года</h3>
+                        <p>Индивидуальная программа для каждого нового ученика</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="feature-card feature-item show">
+                        <h3>Поступление без экзаменов</h3>
+                        <p>Пробное занятие для подбора комфортной группы</p>
+                    </div>
+                    <div class="feature-card feature-item show">
+                        <h3>Интересные мероприятия</h3>
+                        <p>Праздники, экскурсии, поездки</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-section show">
+            <div class="contact-form">
+                <h3 class="form-title">Руководитель школы ответит на любые вопросы о занятиях</h3>
+                <form>
+                    <div class="row g-2">
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" placeholder="Ваше имя" required>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="tel" class="form-control" placeholder="Ваш телефон" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="submit-btn mt-3">Отправить</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

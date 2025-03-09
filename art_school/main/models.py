@@ -1,0 +1,40 @@
+from django.db import models
+
+# Перенесите модель Review в начало файла
+class Review(models.Model):
+    name = models.CharField(max_length=100, verbose_name="Имя")
+    text = models.TextField(verbose_name="Текст отзыва")
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
+
+    def __str__(self):
+        return f"{self.name} - {self.created_at}"
+
+    class Meta:
+        verbose_name = "Отзыв"
+        verbose_name_plural = "Отзывы"
+
+class News(models.Model):
+    title = models.CharField(max_length=200, verbose_name="Заголовок")
+    content = models.TextField(verbose_name="Содержание")
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
+    image = models.ImageField(upload_to="news_images/", verbose_name="Изображение", null=True, blank=True)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = "Новость"
+        verbose_name_plural = "Новости"
+
+class PhotoReport(models.Model):
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    main_image = models.ImageField(upload_to='photo_reports/')  # Убедитесь, что поле есть
+
+    def __str__(self):
+        return self.title
+
+class ReportImage(models.Model):
+    report = models.ForeignKey(PhotoReport, on_delete=models.CASCADE, related_name='images')
+    image = models.ImageField(upload_to='photo_reports/')

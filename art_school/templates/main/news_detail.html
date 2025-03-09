@@ -1,0 +1,20 @@
+{% extends 'main/base.html' %} {% load static %} {% block title %}{{ news_item.title }}{% endblock %} {% block content %}
+<div class="container my-5 pt-5">
+    <div class="card news-card">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="{{ news_item.image.url }}" class="img-fluid news-image" alt="{{ news_item.title }}">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h1 class="card-title">{{ news_item.title }}</h1>
+                    <div class="card-text">{{ news_item.content|linebreaks }}</div>
+                    <div class="mt-4 text-muted">
+                        <small>{{ news_item.created_at|date:"d.m.Y H:i" }}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

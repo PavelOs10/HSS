@@ -1,0 +1,61 @@
+<!-- templates/main/reviews.html -->
+{% extends 'main/base.html' %} {% load static %} {% block title %}Отзывы{% endblock %} {% block head %}
+<link href="{% static 'css/reviews.css' %}" rel="stylesheet"> {% endblock %} {% block content %}
+<div class="container my-0 pt-0" style="margin-top: -4.5cm;">
+    <h2 class="text-center mb-4 title-animate">Отзывы</h2>
+
+    <div id="reviewCarousel" class="carousel slide mb-5" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            {% for review in reviews %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                <div class="review-card">
+                    <h5>{{ review.name }}</h5>
+                    <p>{{ review.text }}</p>
+                    <small class="text-muted">{{ review.created_at }}</small>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#reviewCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Предыдущий</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#reviewCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Следующий</span>
+        </button>
+    </div>
+
+    <div class="p-4" id="reviewForm" style="margin-bottom: 1.5cm;">
+        <h2 class="text-center mb-4">Оставить отзыв</h2>
+        <form method="post" class="card p-4">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="id_name" class="form-label">Ваше имя</label>
+                <input type="text" name="name" class="form-control w-100" required id="id_name">
+            </div>
+            <div class="mb-3">
+                <label for="id_text" class="form-label">Ваш отзыв</label>
+                <textarea name="text" class="form-control w-100" required id="id_text" rows="4"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary submit-btn w-100">Отправить</button>
+        </form>
+    </div>
+</div>
+{% endblock %} {% block scripts %}
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Анимация элементов
+        const reviews = document.querySelectorAll('.review-card');
+        reviews.forEach((review, index) => {
+            setTimeout(() => review.classList.add('show'), index * 150);
+        });
+
+        // Настройка карусели
+        new bootstrap.Carousel(document.getElementById('reviewCarousel'), {
+            interval: 5000,
+            wrap: true
+        });
+    });
+</script>
+{% endblock %}

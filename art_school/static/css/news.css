@@ -1,0 +1,25 @@
+/* static/css/news.css */
+
+.news-card {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.news-image {
+    height: 250px;
+    object-fit: cover;
+}
+
+.modal-content {
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.modal-body {
+    padding: 30px;
+}
