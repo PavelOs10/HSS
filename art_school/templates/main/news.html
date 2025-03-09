@@ -1,43 +1,136 @@
 {% extends 'main/base.html' %} {% load static %} {% block title %}Новости{% endblock %} {% block head %}
 <link href="{% static 'css/news.css' %}" rel="stylesheet">
 <style>
+    /* Кастомные стили модального окна */
+    
     .modal .navbar {
         display: none !important;
     }
     
-    .modal-content {
+    .modal-dialog.modal-dialog {
+        max-width: 90vw !important;
+        width: 90vw !important;
+        margin: 1rem auto;
+        padding: 0;
+    }
+    
+    .modal-content.modal-content {
+        width: 100% !important;
+        min-height: 90vh;
+        border-radius: 15px;
+        box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+        background: #3db9eb10 !important;
+    }
+    
+    .modal-header {
         border: none !important;
         background: transparent !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+    }
+    
+    .btn-close {
+        position: relative;
+        width: 40px;
+        height: 40px;
+        background: none !important;
+        opacity: 1;
+        margin: 0;
+        padding: 0;
+        transition: all 0.3s ease;
+        border: none !important;
+        box-shadow: none !important;
+        outline: none !important;
+        /* Новые свойства */
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .btn-close::before,
+    .btn-close::after {
+        content: '';
+        position: absolute;
+        width: 30px;
+        height: 3px;
+        background: #000;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 2px;
+        /* Новые свойства */
+        margin: 0;
+        padding: 0;
+    }
+    
+    .btn-close::before {
+        transform: translate(-50%, -50%) rotate(45deg);
+    }
+    
+    .btn-close::after {
+        transform: translate(-50%, -50%) rotate(-45deg);
+    }
+    
+    .btn-close:hover {
+        transform: rotate(90deg);
+    }
+    
+    .btn-close:hover::before,
+    .btn-close:hover::after {
+        background: #666;
+    }
+    
+    .btn-close:focus {
+        box-shadow: none !important;
+    }
+    
+    .btn-close::after,
+    .btn-close::before {
+        background-color: #000 !important;
     }
     
     .modal-body {
-        padding: 0 !important;
+        padding: 40px;
+        max-height: 85vh;
+        overflow-y: auto;
     }
-    
-    .news-modal-content {
-        background: rgba(255, 255, 255, 0.98);
-        border-radius: 15px;
-        padding: 30px;
-    }
+    /* Стили контента новости */
     
     .news-modal-image {
+        max-width: 600px;
         width: 100%;
         height: auto;
-        max-height: 70vh;
-        object-fit: contain;
-        /* Изменено с cover на contain */
         border-radius: 10px;
+        margin: 0 auto 20px;
+        display: block;
     }
     
-    .news-image {
-        height: 250px;
-        object-fit: cover;
-        /* Для списка новостей сохраняем обрезку */
-        width: 100%;
+    @media (max-width: 768px) {
+        .modal-dialog.modal-dialog {
+            max-width: 95vw !important;
+            width: 95vw !important;
+            margin: 0.5rem auto;
+        }
+        .modal-body {
+            padding: 20px;
+        }
+        .btn-close {
+            width: 30px;
+            height: 30px;
+        }
+        .btn-close::before,
+        .btn-close::after {
+            width: 20px;
+        }
     }
 </style>
 {% endblock %} {% block content %}
-<div class="container my-3 pt-3" style="margin-top: -1.5cm;">
+<div class="container my-3 pt-3">
     <h2 class="text-center mb-4 title-animate">Новости</h2>
     <div class="row">
         {% for news_item in news %}
@@ -66,24 +159,14 @@
 </div>
 
 <!-- Модальное окно -->
-<div class="modal fade" id="newsModal" tabindex="-1">
-    <div class="modal-dialog modal-xl">
+<div class="modal fade" id="newsModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
         <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+            </div>
             <div class="modal-body">
-                <div class="news-modal-content">
-                    <div class="row g-3">
-                        <div class="col-md-6">
-                            <img id="modalNewsImage" class="news-modal-image w-100">
-                        </div>
-                        <div class="col-md-6 ps-md-4">
-                            <h2 id="modalNewsTitle" class="mb-3"></h2>
-                            <div id="modalNewsContent" class="mb-3"></div>
-                            <div class="text-muted">
-                                <small id="modalNewsDate"></small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div id="newsModalContent"></div>
             </div>
         </div>
     </div>
@@ -91,42 +174,40 @@
 {% endblock %} {% block scripts %}
 <script>
     document.addEventListener("DOMContentLoaded", function() {
+        const newsModal = new bootstrap.Modal('#newsModal', {
+            backdrop: 'static',
+            keyboard: false
+        });
+
+        // Обработчик полного закрытия модального окна
+        newsModal._element.addEventListener('hidden.bs.modal', function() {
+            // Удаляем бэкдроп
+            const backdrops = document.querySelectorAll('.modal-backdrop');
+            backdrops.forEach(backdrop => backdrop.remove());
+
+            // Восстанавливаем скролл страницы
+            document.body.style.overflow = 'auto';
+            document.body.style.paddingRight = '0';
+        });
+
         document.querySelectorAll('.news-card').forEach(card => {
             card.addEventListener('click', async function() {
+                const newsId = this.dataset.id;
                 try {
-                    const newsId = this.dataset.id;
                     const response = await fetch(`/news/${newsId}/`);
-
-                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                    if (!response.ok) throw new Error(`Ошибка HTTP: ${response.status}`);
 
                     const html = await response.text();
-                    const parser = new DOMParser();
-                    const doc = parser.parseFromString(html, 'text/html');
+                    document.getElementById('newsModalContent').innerHTML = html;
+                    newsModal.show();
 
-                    // Обновляем модальное окно
-                    document.getElementById('modalNewsTitle').textContent =
-                        doc.querySelector('.card-title').textContent;
-                    document.getElementById('modalNewsContent').innerHTML =
-                        doc.querySelector('.card-text').innerHTML;
-                    document.getElementById('modalNewsDate').textContent =
-                        doc.querySelector('.text-muted small').textContent;
-
-                    // Загрузка изображения с обработкой ошибок
-                    const img = new Image();
-                    img.src = doc.querySelector('img').src;
-                    img.onload = () => {
-                        document.getElementById('modalNewsImage').src = img.src;
-                        new bootstrap.Modal(document.getElementById('newsModal')).show();
-                    };
-                    img.onerror = () => {
-                        document.getElementById('modalNewsImage').src = '{% static "img/placeholder.jpg" %}';
-                        new bootstrap.Modal(document.getElementById('newsModal')).show();
-                    };
+                    // Блокируем скролл основной страницы
+                    document.body.style.overflow = 'hidden';
+                    document.body.style.paddingRight = '17px';
 
                 } catch (error) {
-                    console.error('Error:', error);
-                    // Автоматическое открытие модального окна даже при ошибке
-                    new bootstrap.Modal(document.getElementById('newsModal')).show();
+                    console.error('Ошибка:', error);
+                    alert('Не удалось загрузить новость. Пожалуйста, попробуйте позже.');
                 }
             });
         });
