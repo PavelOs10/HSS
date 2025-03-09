@@ -59,4 +59,13 @@
         {% endfor %}
     </div>
 </div>
+{% endblock %} {% block scripts %}
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Анимация карточек фотоотчетов
+        document.querySelectorAll('.photo-report-card').forEach((card, index) => {
+            setTimeout(() => card.classList.add('show'), index * 100);
+        });
+    });
+</script>
 {% endblock %}
