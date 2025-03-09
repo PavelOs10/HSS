@@ -1,0 +1,16 @@
+{% extends 'main/base.html' %} {% load static %} {% block title %}Контакты{% endblock %} {% block content %}
+<div class="container my-5 pt-5">
+    <h2 class="text-center mb-4 title-animate">Контакты</h2>
+
+    <div class="card p-4">
+        <h3 class="mb-4">Контактная информация</h3>
+        <p><strong>Телефон:</strong> {{ contact.phone }}</p>
+        {% if contact.telegram %}
+        <p><strong>Telegram:</strong> <a href="{{ contact.telegram }}" target="_blank">{{ contact.telegram }}</a></p>
+        {% endif %} {% if contact.vk %}
+        <p><strong>VK:</strong> <a href="{{ contact.vk }}" target="_blank">{{ contact.vk }}</a></p>
+        {% endif %}
+        <p><strong>Адрес:</strong> {{ contact.address }}</p>
+    </div>
+</div>
+{% endblock %}

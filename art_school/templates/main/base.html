@@ -21,10 +21,24 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="/">Главная</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/reviews/">Отзывы</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/news/">Новости</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'photo_reports' %}">Фотоотчеты</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="/">Главная</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/reviews/' %}active{% endif %}" href="{% url 'reviews' %}">Отзывы</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/news/' %}active{% endif %}" href="{% url 'news' %}">Новости</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/photo_reports/' %}active{% endif %}" href="{% url 'photo_reports' %}">Фотоотчеты</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/teachers/' %}active{% endif %}" href="{% url 'teachers' %}">Преподаватели</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/contacts/' %}active{% endif %}" href="{% url 'contacts' %}">Контакты</a>
+                    </li>
                 </ul>
             </div>
         </div>

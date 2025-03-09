@@ -239,6 +239,30 @@ footer {
     object-fit: cover;
 }
 
+.teacher-card {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(5px);
+}
+
+.teacher-card img {
+    height: 250px;
+    object-fit: cover;
+    width: 100%;
+}
+
+.contact-card {
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(5px);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
 @media (max-width: 768px) {
     .row.g-2>[class^="col-"] {
         margin-bottom: 8px;

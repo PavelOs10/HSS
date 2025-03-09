@@ -38,3 +38,28 @@ class PhotoReport(models.Model):
 class ReportImage(models.Model):
     report = models.ForeignKey(PhotoReport, on_delete=models.CASCADE, related_name='images')
     image = models.ImageField(upload_to='photo_reports/')
+
+class Teacher(models.Model):
+    name = models.CharField(max_length=200, verbose_name="ФИО")
+    bio = models.TextField(verbose_name="Биография")
+    photo = models.ImageField(upload_to='teachers/', verbose_name="Фото")
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Преподаватель"
+        verbose_name_plural = "Преподаватели"
+
+class Contact(models.Model):
+    phone = models.CharField(max_length=20, verbose_name="Телефон")
+    telegram = models.URLField(verbose_name="Telegram", blank=True, null=True)
+    vk = models.URLField(verbose_name="VK", blank=True, null=True)
+    address = models.TextField(verbose_name="Адрес")
+
+    def __str__(self):
+        return self.phone
+
+    class Meta:
+        verbose_name = "Контакт"
+        verbose_name_plural = "Контакты"
