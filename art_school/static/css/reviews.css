@@ -27,3 +27,44 @@
     margin-top: 10px;
     margin-bottom: 0.5cm;
 }
+
+#reviewCarousel .carousel-inner {
+    min-height: 300px;
+    /* Фиксирует высоту контейнера */
+}
+
+.review-card {
+    opacity: 1;
+    /* Временно отключите анимацию */
+    transform: translateY(0);
+}
+
+
+/* Кастомные стили для стрелок карусели */
+
+#reviewCarousel .carousel-control-prev,
+#reviewCarousel .carousel-control-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+}
+
+#reviewCarousel .carousel-control-prev {
+    left: -60px;
+    /* Выносим стрелку за пределы контейнера */
+}
+
+#reviewCarousel .carousel-control-next {
+    right: -60px;
+    /* Выносим стрелку за пределы контейнера */
+}
+
+#reviewCarousel .carousel-control-prev-icon,
+#reviewCarousel .carousel-control-next-icon {
+    filter: invert(1);
+    /* Делает стрелки белыми */
+}

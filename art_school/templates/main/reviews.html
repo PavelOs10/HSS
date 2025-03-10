@@ -32,11 +32,13 @@
             {% csrf_token %}
             <div class="mb-3">
                 <label for="id_name" class="form-label">Ваше имя</label>
-                <input type="text" name="name" class="form-control w-100" required id="id_name">
+                <input type="text" name="name" class="form-control w-100" required id="id_name" style="max-width: none;">
+                <!-- Убрать ограничение -->
             </div>
             <div class="mb-3">
                 <label for="id_text" class="form-label">Ваш отзыв</label>
-                <textarea name="text" class="form-control w-100" required id="id_text" rows="4"></textarea>
+                <textarea name="text" class="form-control w-100" required id="id_text" rows="2" style="max-width: none;"></textarea>
+                <!-- Убрать ограничение -->
             </div>
             <button type="submit" class="btn btn-primary submit-btn w-100">Отправить</button>
         </form>
@@ -45,16 +47,17 @@
 {% endblock %} {% block scripts %}
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        // Анимация элементов
-        const reviews = document.querySelectorAll('.review-card');
-        reviews.forEach((review, index) => {
-            setTimeout(() => review.classList.add('show'), index * 150);
-        });
-
-        // Настройка карусели
-        new bootstrap.Carousel(document.getElementById('reviewCarousel'), {
+        const reviewCarousel = new bootstrap.Carousel('#reviewCarousel', {
             interval: 5000,
             wrap: true
+        });
+
+        // Анимация карточек (если требуется)
+        document.querySelectorAll('.review-card').forEach((card, index) => {
+            setTimeout(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, index * 150);
         });
     });
 </script>

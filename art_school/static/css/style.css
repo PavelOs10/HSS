@@ -249,9 +249,13 @@ footer {
 }
 
 .teacher-card img {
-    height: 250px;
-    object-fit: cover;
-    width: 100%;
+    float: left;
+    /* Обтекание текстом слева */
+    margin-right: 25px;
+    margin-bottom: 15px;
+    max-width: 100%;
+    height: auto !important;
+    /* Отмена фиксированной высоты */
 }
 
 .contact-card {
@@ -261,6 +265,25 @@ footer {
     backdrop-filter: blur(5px);
     padding: 20px;
     margin-bottom: 20px;
+}
+
+.teacher-photo {
+    float: left;
+    shape-outside: margin-box;
+    /* Круглое обтекание */
+    margin-right: 2rem;
+    margin-bottom: 1rem;
+    clip-path: margin-box;
+    /* Круглая форма фото */
+    width: 280px;
+    height: 280px;
+    object-fit: cover;
+}
+
+.bio-text {
+    text-align: justify;
+    hyphens: auto;
+    /* Перенос длинных слов */
 }
 
 @media (max-width: 768px) {
@@ -308,6 +331,23 @@ footer {
     }
     .photo-report-card img {
         height: 200px;
+    }
+    .teacher-card img {
+        float: none;
+        margin-right: 0;
+        margin-bottom: 20px;
+        width: 100%;
+    }
+    .teacher-photo {
+        float: none;
+        display: block;
+        margin: 0 auto 2rem;
+        clip-path: none;
+        width: 100%;
+        height: auto;
+    }
+    .teacher-card {
+        height: auto !important;
     }
 }
 
