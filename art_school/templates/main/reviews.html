@@ -26,21 +26,19 @@
         </button>
     </div>
 
-    <div class="p-4" id="reviewForm" style="margin-bottom: 1.5cm;">
+    <div class="p-4" id="reviewForm">
         <h2 class="text-center mb-4">Оставить отзыв</h2>
-        <form method="post" class="card p-4">
+        <form method="post">
             {% csrf_token %}
             <div class="mb-3">
                 <label for="id_name" class="form-label">Ваше имя</label>
-                <input type="text" name="name" class="form-control w-100" required id="id_name" style="max-width: none;">
-                <!-- Убрать ограничение -->
+                <input type="text" name="name" class="form-control" required id="id_name">
             </div>
             <div class="mb-3">
                 <label for="id_text" class="form-label">Ваш отзыв</label>
-                <textarea name="text" class="form-control w-100" required id="id_text" rows="2" style="max-width: none;"></textarea>
-                <!-- Убрать ограничение -->
+                <textarea name="text" class="form-control" required id="id_text" rows="3"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary submit-btn w-100">Отправить</button>
+            <button type="submit" class="submit-btn">Отправить</button>
         </form>
     </div>
 </div>
