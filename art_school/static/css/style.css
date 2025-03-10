@@ -1,4 +1,4 @@
-/* style.css */
+/* ==================== БАЗОВЫЕ СТИЛИ ==================== */
 
 @font-face {
     font-family: 'Mekanik Let';
@@ -6,6 +6,15 @@
     font-weight: normal;
     font-style: normal;
 }
+
+:root {
+    --main-bg: rgba(3, 221, 250, 0.096);
+    --accent-color: #2faee9;
+    --hover-color: #4163fc;
+}
+
+
+/* ==================== ОСНОВНАЯ РАЗМЕТКА ==================== */
 
 body,
 html {
@@ -15,6 +24,7 @@ html {
     font-family: 'Mekanik Let', sans-serif;
     color: #333;
     padding-bottom: 50px;
+    background-attachment: fixed;
 }
 
 #vanta-bg {
@@ -26,9 +36,13 @@ html {
     z-index: -1;
 }
 
+
+/* ==================== НАВИГАЦИЯ ==================== */
+
 .navbar {
     position: relative;
     z-index: 1;
+    background: transparent !important;
 }
 
 .nav-link {
@@ -40,6 +54,9 @@ html {
 .nav-link:hover {
     color: #ff6f61 !important;
 }
+
+
+/* ==================== ГЕРОЙ-СЕКЦИЯ ==================== */
 
 .hero-section {
     position: relative;
@@ -56,107 +73,144 @@ html {
     width: 100%;
     padding: 0 20px;
     max-width: 1200px;
-    transform: translateY(0);
     transition: all 1s ease;
 }
 
 .logo {
     max-width: 225px;
     margin-bottom: 15px;
-    transition: all 0.3s ease;
-    transform-origin: center;
-    transform: translateY(0);
+    transition: transform 0.3s ease;
 }
 
 .logo:hover {
     transform: scale(1.02);
 }
 
-.logo.move-up {
-    transform: translateY(-100px) scale(1);
-    margin-bottom: 5px;
-}
 
-.title-container {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.8s ease;
-    margin-bottom: 15px;
-    text-align: center;
-}
+/* ==================== КАРТОЧКИ ==================== */
 
-.title-container.show {
-    opacity: 1;
-    transform: translateY(0);
-    margin-top: -1.5cm;
-}
-
-.about-section {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.8s ease;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 10px 0;
-}
-
-.about-section.show {
-    opacity: 1;
-    transform: translateY(0);
-    margin-top: -0.5cm;
-}
-
-.feature-item {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.6s ease;
-}
-
-.feature-item.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.feature-card {
-    background: rgba(3, 221, 250, 0.096);
+.feature-card,
+.news-card,
+.photo-report-card,
+.review-card,
+.teacher-card,
+.contact-card,
+#reviewForm {
+    background: var(--main-bg) !important;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 10px;
-    padding: 10px;
-    margin: 5px;
+    padding: 15px;
+    margin: 10px 0;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    min-height: 150px;
+    transition: all 0.3s ease;
+}
+
+
+/* Стили для формы отзывов */
+
+#reviewForm {
+    min-height: 120px;
+    /* Уменьшили высоту в 2 раза */
+    padding: 12px;
+}
+
+#reviewForm textarea {
+    height: 80px !important;
+    /* Фиксированная высота поля ввода */
+    resize: vertical;
+    /* Разрешаем вертикальное изменение размера */
+}
+
+
+/* Анимация ховера */
+
+.feature-card:hover,
+.news-card:hover,
+.photo-report-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+
+/* Специфичные стили для секций */
+
+.courses-section .feature-card {
+    min-height: 180px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    backdrop-filter: blur(2px);
-    transition: all 0.3s ease;
-    transform-origin: center;
 }
 
-.feature-card:hover {
-    transform: scale(1.02);
-    z-index: 2;
+.goals-section .feature-card {
+    min-height: 100px;
 }
 
-.feature-card h3 {
-    font-size: 1.1rem;
-    margin-bottom: 8px;
-}
 
-.feature-card p {
-    font-size: 0.9rem;
-    margin-bottom: 0;
-}
+/* ==================== ТИПОГРАФИКА ==================== */
 
 h1 {
     font-size: 1.6rem;
-    margin-bottom: 10px !important;
+    margin-bottom: 1rem !important;
 }
 
 h2 {
     font-size: 1.3rem;
-    margin-bottom: 15px !important;
+    margin-bottom: 1.5rem !important;
     text-align: center;
 }
+
+
+/* ==================== АНИМАЦИИ ==================== */
+
+@keyframes slideIn {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.feature-item {
+    animation: slideIn 0.6s ease forwards;
+    animation-delay: calc(var(--index) * 0.1s);
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+
+/* ==================== ФОРМЫ ==================== */
+
+.form-control {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    background: rgba(211, 237, 252, 0.89);
+    backdrop-filter: blur(2px);
+    transition: all 0.3s ease;
+}
+
+.submit-btn {
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 12px 30px;
+    transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+    background: var(--hover-color);
+    transform: translateY(-2px);
+}
+
+
+/* ==================== ФУТЕР ==================== */
 
 footer {
     position: fixed;
@@ -171,218 +225,43 @@ footer {
     z-index: 1;
 }
 
-.contact-section {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.8s ease;
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 15px 0;
-    text-align: center;
-}
 
-.contact-section.show {
-    opacity: 1;
-    transform: translateY(0);
-    margin-top: -0.5cm;
-}
-
-.container.my-3 {
-    margin-top: 1rem !important;
-    padding-top: 1rem !important;
-}
-
-.form-title {
-    font-size: 1.1rem;
-    margin-bottom: 15px;
-    text-align: center;
-}
-
-.form-control {
-    width: 100%;
-    padding: 12px 15px;
-    margin: 0 auto 8px;
-    border: 1px solid #ddd;
-    border-radius: 25px;
-    background: rgba(211, 237, 252, 0.89);
-    backdrop-filter: blur(2px);
-    max-width: 280px;
-    display: inline-block;
-    transition: all 0.3s ease !important;
-}
-
-.form-control:hover {
-    transform: scale(1.02);
-}
-
-.submit-btn {
-    width: auto;
-    min-width: 200px;
-    padding: 12px 30px;
-    margin: 15px auto 0;
-    background: #2faee9;
-    color: white;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: block;
-}
-
-.submit-btn:hover {
-    background: #4163fc;
-    transform: translateY(-2px);
-}
-
-.news-image {
-    height: 250px;
-    object-fit: cover;
-}
-
-.teacher-card {
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-    background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(5px);
-}
-
-.teacher-card img {
-    float: left;
-    /* Обтекание текстом слева */
-    margin-right: 25px;
-    margin-bottom: 15px;
-    max-width: 100%;
-    height: auto !important;
-    /* Отмена фиксированной высоты */
-}
-
-.contact-card {
-    border-radius: 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(5px);
-    padding: 20px;
-    margin-bottom: 20px;
-}
-
-.teacher-photo {
-    float: left;
-    shape-outside: margin-box;
-    /* Круглое обтекание */
-    margin-right: 2rem;
-    margin-bottom: 1rem;
-    clip-path: margin-box;
-    /* Круглая форма фото */
-    width: 280px;
-    height: 280px;
-    object-fit: cover;
-}
-
-.bio-text {
-    text-align: justify;
-    hyphens: auto;
-    /* Перенос длинных слов */
-}
+/* ==================== МЕДИА-ЗАПРОСЫ ==================== */
 
 @media (max-width: 768px) {
-    .row.g-2>[class^="col-"] {
-        margin-bottom: 8px;
-    }
-    .form-control {
-        max-width: 100%;
-        display: block;
-        margin: 0 auto 8px;
-    }
-    .submit-btn {
-        width: 100%;
-        padding: 12px;
-    }
-    .logo {
-        max-width: 200px;
-    }
-    .logo.move-up {
-        transform: translateY(-40px);
-    }
-    .feature-card {
-        min-height: 130px;
-    }
-    .feature-card h3 {
-        font-size: 1rem;
-    }
-    .feature-card p {
-        font-size: 0.85rem;
-    }
-    .title-container.show {
-        margin-top: -0.7cm;
-    }
-    .carousel-item img {
-        height: 50vh;
-    }
-    .news-modal-content .row {
-        flex-direction: column;
-    }
-    .news-modal-content img {
-        height: 40vh !important;
-    }
-    .photo-report-card {
-        height: auto;
-    }
-    .photo-report-card img {
-        height: 200px;
-    }
-    .teacher-card img {
-        float: none;
-        margin-right: 0;
-        margin-bottom: 20px;
-        width: 100%;
-    }
-    .teacher-photo {
-        float: none;
-        display: block;
-        margin: 0 auto 2rem;
-        clip-path: none;
-        width: 100%;
-        height: auto;
-    }
-    .teacher-card {
-        height: auto !important;
-    }
-}
-
-@media (max-height: 700px) {
     .hero-content {
         top: 2vh;
-        position: relative;
-        padding-bottom: 100px;
     }
     .logo {
         max-width: 180px;
     }
-    .logo.move-up {
-        transform: translateY(-60px);
-    }
-    h1 {
-        font-size: 1.3rem;
-    }
-    h2 {
-        font-size: 1.1rem;
-    }
     .feature-card {
-        min-height: 120px;
-        padding: 8px;
+        min-height: 130px !important;
+        margin: 8px 0;
     }
-    .contact-section {
-        padding: 10px 15px;
+    .courses-section .feature-card {
+        min-height: 160px !important;
     }
-    .form-title {
-        font-size: 0.95rem;
+    #reviewForm {
+        min-height: 100px;
+        padding: 10px;
     }
-    .form-control {
-        padding: 10px 12px;
+    #reviewForm textarea {
+        height: 60px !important;
     }
-    .title-container.show {
-        margin-top: -0.5cm;
+}
+
+@media (max-height: 700px) {
+    .hero-section {
+        min-height: 700px;
+    }
+    .logo {
+        max-width: 160px;
+    }
+}
+
+@media (hover: none) {
+    .feature-card:hover {
+        transform: none !important;
     }
 }

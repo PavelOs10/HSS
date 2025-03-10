@@ -1,7 +1,7 @@
 /* static/css/reviews.css */
 
 .review-card {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(3, 221, 250, 0.096) !important;
     padding: 20px;
     border-radius: 15px;
     margin: 10px auto;

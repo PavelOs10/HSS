@@ -2,6 +2,7 @@
 
 .news-card {
     cursor: pointer;
+    background: rgba(3, 221, 250, 0.096) !important;
     transition: all 0.3s ease;
     border: none;
     border-radius: 15px;

@@ -59,8 +59,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Анимация элементов
     setTimeout(() => {
+        // Анимация для всех карточек
         document.querySelectorAll('.feature-item').forEach((item, index) => {
-            setTimeout(() => item.classList.add('show'), index * 100);
+            item.style.transform = 'translateY(20px)';
+            item.style.opacity = '0';
+            setTimeout(() => {
+                item.style.transform = 'translateY(0)';
+                item.style.opacity = '1';
+            }, 200 + index * 100);
         });
     }, 500);
 });

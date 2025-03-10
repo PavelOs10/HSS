@@ -1,0 +1,408 @@
+@font-face {
+    font-family: 'Mekanik Let';
+    src: url('/static/fonts/university-oblique.woff2') format('woff'), url('/static/fonts/university-oblique.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Mekanik Let', sans-serif;
+    color: #333;
+    padding-bottom: 50px;
+}
+
+#vanta-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.navbar {
+    position: relative;
+    z-index: 1;
+}
+
+.nav-link {
+    color: #333 !important;
+    font-weight: bold;
+    transition: color 0.3s ease !important;
+}
+
+.nav-link:hover {
+    color: #ff6f61 !important;
+}
+
+.hero-section {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 80px;
+}
+
+.hero-content {
+    position: absolute;
+    top: 5vh;
+    width: 100%;
+    padding: 0 20px;
+    max-width: 1200px;
+    transform: translateY(0);
+    transition: all 1s ease;
+}
+
+.logo {
+    max-width: 225px;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+    transform-origin: center;
+    transform: translateY(0);
+}
+
+.logo:hover {
+    transform: scale(1.02);
+}
+
+.logo.move-up {
+    transform: translateY(-100px) scale(1);
+    margin-bottom: 5px;
+}
+
+.title-container {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s ease;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.title-container.show {
+    opacity: 1;
+    transform: translateY(0);
+    margin-top: -1.5cm;
+}
+
+
+/* Обновленные стили карточек */
+
+.feature-item {
+    animation: slideIn 0.6s ease forwards;
+    animation-delay: calc(var(--index) * 0.1s);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+}
+
+.feature-card {
+    background: rgba(3, 221, 250, 0.096);
+    border-radius: 10px;
+    padding: 12px;
+    margin: 8px 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    min-height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    backdrop-filter: blur(2px);
+    transition: all 0.3s ease;
+    transform-origin: center;
+}
+
+.feature-card:hover {
+    transform: scale(1.05) translateZ(10px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2) !important;
+    z-index: 10;
+}
+
+.courses-section .feature-card:hover {
+    transform: scale(1.03) translateZ(5px);
+}
+
+.feature-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+}
+
+.feature-card p {
+    font-size: 0.9rem;
+    margin-bottom: 0;
+}
+
+
+/* Секции */
+
+.about-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s ease;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 10px 0;
+}
+
+.about-section.show {
+    opacity: 1;
+    transform: translateY(0);
+    margin-top: -0.5cm;
+}
+
+.courses-section,
+.goals-section {
+    margin: 2rem 0;
+    padding: 1.5rem 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+
+/* Стили для списков */
+
+.feature-card ul {
+    padding-left: 1rem;
+    margin-bottom: 0;
+    flex-grow: 1;
+}
+
+.feature-card li {
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+
+/* Выравнивание карточек курсов */
+
+.courses-section .feature-card {
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+/* Карточки задач */
+
+.goals-section .feature-card {
+    min-height: 100px;
+    padding: 12px;
+}
+
+
+/* Анимации */
+
+@keyframes slideIn {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+
+/* Остальные стили */
+
+h1 {
+    font-size: 1.6rem;
+    margin-bottom: 10px !important;
+}
+
+h2 {
+    font-size: 1.3rem;
+    margin-bottom: 15px !important;
+    text-align: center;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background: #B0C4DE;
+    color: #333;
+    text-align: center;
+    padding: 5px 0;
+    z-index: 1;
+}
+
+.contact-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s ease;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 15px 0;
+    text-align: center;
+}
+
+.contact-section.show {
+    opacity: 1;
+    transform: translateY(0);
+    margin-top: -0.5cm;
+}
+
+
+/* Формы и кнопки */
+
+.form-control {
+    width: 100%;
+    padding: 12px 15px;
+    margin: 0 auto 8px;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    background: rgba(211, 237, 252, 0.89);
+    backdrop-filter: blur(2px);
+    max-width: 280px;
+    display: inline-block;
+    transition: all 0.3s ease !important;
+}
+
+.form-control:hover {
+    transform: scale(1.02);
+}
+
+.submit-btn {
+    width: auto;
+    min-width: 200px;
+    padding: 12px 30px;
+    margin: 15px auto 0;
+    background: #2faee9;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: block;
+}
+
+.submit-btn:hover {
+    background: #4163fc;
+    transform: translateY(-2px);
+}
+
+.contact-card {
+    background: rgba(3, 221, 250, 0.096) !important;
+    /* Заменить */
+    /* было: background: rgba(255, 255, 255, 0.9); */
+}
+
+@media (max-width: 768px) {
+    .row.g-2>[class^="col-"] {
+        margin-bottom: 8px;
+    }
+    .form-control {
+        max-width: 100%;
+        display: block;
+        margin: 0 auto 8px;
+    }
+    .submit-btn {
+        width: 100%;
+        padding: 12px;
+    }
+    .logo {
+        max-width: 200px;
+    }
+    .logo.move-up {
+        transform: translateY(-40px);
+    }
+    .feature-card {
+        min-height: 130px;
+    }
+    .feature-card h3 {
+        font-size: 1rem;
+    }
+    .feature-card p {
+        font-size: 0.85rem;
+    }
+    .title-container.show {
+        margin-top: -0.7cm;
+    }
+    .carousel-item img {
+        height: 50vh;
+    }
+    .news-modal-content .row {
+        flex-direction: column;
+    }
+    .news-modal-content img {
+        height: 40vh !important;
+    }
+    .photo-report-card {
+        height: auto;
+    }
+    .photo-report-card img {
+        height: 200px;
+    }
+    .teacher-card img {
+        float: none;
+        margin-right: 0;
+        margin-bottom: 20px;
+        width: 100%;
+    }
+    .teacher-photo {
+        float: none;
+        display: block;
+        margin: 0 auto 2rem;
+        clip-path: none;
+        width: 100%;
+        height: auto;
+    }
+    .teacher-card {
+        height: auto !important;
+    }
+    .courses-section .feature-card {
+        min-height: 160px;
+    }
+    .feature-card {
+        min-height: 130px;
+    }
+}
+
+@media (max-height: 700px) {
+    .hero-content {
+        top: 2vh;
+        position: relative;
+        padding-bottom: 100px;
+    }
+    .logo {
+        max-width: 180px;
+    }
+    .logo.move-up {
+        transform: translateY(-60px);
+    }
+    h1 {
+        font-size: 1.3rem;
+    }
+    h2 {
+        font-size: 1.1rem;
+    }
+    .feature-card {
+        min-height: 120px;
+        padding: 8px;
+    }
+    .contact-section {
+        padding: 10px 15px;
+    }
+    .form-title {
+        font-size: 0.95rem;
+    }
+    .form-control {
+        padding: 10px 12px;
+    }
+    .title-container.show {
+        margin-top: -0.5cm;
+    }
+}
+
+@media (hover: none) {
+    .feature-card:hover {
+        transform: none !important;
+    }
+}
