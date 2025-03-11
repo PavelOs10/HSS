@@ -1,13 +1,12 @@
 {% extends 'main/base.html' %} {% load static %} {% block title %}Преподаватели{% endblock %} {% block content %}
-<div class="container mt-3" style="overflow-y: auto; height: 80vh;">
-    <!-- Добавлен скролл -->
+<div class="container pb-5" id="teachers">
+    <!-- Добавлен отступ снизу -->
     <h2 class="text-center mb-4 title-animate">Преподаватели</h2>
 
     {% for teacher in teachers %}
-    <div class="teacher-card mb-5 p-3 bg-white rounded-3 shadow">
-        <!-- Новый класс -->
+    <div class="teacher-card mb-3 p-3 bg-white rounded-3 shadow">
+        <!-- Уменьшен отступ между карточками -->
         <div class="row gx-5 align-items-start">
-            <!-- Изменен gutter -->
             <div class="col-md-4">
                 <img src="{{ teacher.photo.url }}" class="teacher-photo img-fluid rounded-3" alt="{{ teacher.name }}" style="max-width: 280px;">
             </div>

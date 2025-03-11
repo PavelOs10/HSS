@@ -130,11 +130,11 @@
     }
 </style>
 {% endblock %} {% block content %}
-<div class="container mt-3">
+<div class="container" id="news">
     <h2 class="text-center mb-4 title-animate">Новости</h2>
     <div class="row">
         {% for news_item in news %}
-        <div class="col-12 mb-4">
+        <div class="col-12 mb-2">
             <div class="card news-card" data-id="{{ news_item.id }}">
                 <div class="row g-0">
                     <div class="col-md-4">

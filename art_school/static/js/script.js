@@ -109,3 +109,15 @@ function createCarousel(images) {
         </button>
     </div>`;
 }
+
+function updateContentPadding() {
+    const footer = document.querySelector('footer');
+    const mainContent = document.querySelector('.main-content');
+    if (footer && mainContent) {
+        const footerHeight = footer.offsetHeight;
+        mainContent.style.paddingBottom = `${footerHeight}px`;
+    }
+}
+
+window.addEventListener('load', updateContentPadding);
+window.addEventListener('resize', updateContentPadding);

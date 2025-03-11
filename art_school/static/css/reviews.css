@@ -68,3 +68,18 @@
     filter: invert(1);
     /* Делает стрелки белыми */
 }
+
+
+/* Уменьшение вертикальных отступов */
+
+#reviewCarousel {
+    margin-bottom: 0.1rem !important;
+    /* Было 1rem */
+}
+
+#reviewForm {
+    margin-top: 0.1rem !important;
+    /* Было 1rem */
+    padding: 0.5rem !important;
+    /* Уменьшение внутренних отступов */
+}

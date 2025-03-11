@@ -2,10 +2,10 @@
 <link href="{% static 'css/reviews.css' %}" rel="stylesheet"> {% endblock %} {% block content %}
 <div class="main-content">
     <div class="container mt-3">
-        <h2 class="text-center mb-4 title-animate">Отзывы</h2>
+        <h2 class="text-center mb-3 title-animate">Отзывы</h2>
 
         <!-- Уменьшен отступ mb-5 → mb-3 -->
-        <div id="reviewCarousel" class="carousel slide mb-3" data-bs-ride="carousel">
+        <div id="reviewCarousel" class="carousel slide mb-2" data-bs-ride="carousel">
             <div class="carousel-inner">
                 {% for review in reviews %}
                 <div class="carousel-item {% if forloop.first %}active{% endif %}">
@@ -28,7 +28,7 @@
         </div>
 
         <!-- Добавлен mt-3 -->
-        <div class="p-4 mt-3" id="reviewForm">
+        <div class="p-4 mt-2" id="reviewForm">
             <h2 class="text-center mb-4">Оставить отзыв</h2>
             <form method="post">
                 {% csrf_token %}
