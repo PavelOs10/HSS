@@ -74,8 +74,9 @@ body {
 /* ==================== ОСНОВНОЙ КОНТЕНТ ==================== */
 
 .main-content {
+    flex: 1;
+    /* Добавлено */
     padding-top: 100px;
-    /* Увеличенный отступ сверху */
     padding-bottom: 40px;
 }
 
@@ -174,9 +175,9 @@ body {
 /* ==================== ФУТЕР ==================== */
 
 footer {
-    position: sticky;
-    bottom: 0;
-    height: var(--footer-height);
+    margin-top: auto;
+    /* Изменено с position: sticky */
+    height: 60px;
     background: #B0C4DE;
     color: var(--text-color);
     display: flex;
