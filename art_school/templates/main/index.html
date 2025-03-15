@@ -101,13 +101,14 @@
         <div class="contact-section show home-feature-section">
             <div class="contact-form">
                 <h5 class="form-title">Руководитель школы ответит на любые вопросы о занятиях</h5>
-                <form>
+                <form method="post">
+                    {% csrf_token %}
                     <div class="row g-2">
                         <div class="col-md-6">
-                            <input type="text" class="form-control" placeholder="Ваше имя" required>
+                            {{ form.name }}
                         </div>
                         <div class="col-md-6">
-                            <input type="tel" class="form-control" placeholder="Ваш телефон" required>
+                            {{ form.phone }}
                         </div>
                     </div>
                     <button type="submit" class="submit-btn mt-3">Отправить</button>

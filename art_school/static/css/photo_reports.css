@@ -49,3 +49,63 @@
     object-fit: cover;
     width: 100%;
 }
+
+
+/* static/css/photo_reports.css */
+
+.carousel-container {
+    height: calc(100vh - 300px);
+    /* Учитываем место для текста и футера */
+    min-height: 400px;
+    max-height: 70vh;
+    margin: 20px 0 80px;
+    /* Отступ снизу для текста */
+    position: relative;
+    overflow: hidden;
+    /* Скрываем части изображения за пределами контейнера */
+}
+
+.carousel-item {
+    height: 100%;
+    display: flex !important;
+    /* Переопределяем bootstrap */
+    align-items: center;
+    justify-content: center;
+    background: #f8f9fa;
+}
+
+.carousel-item img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    margin: auto;
+    /* Центрируем изображение */
+    display: block;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Для квадратных изображений */
+
+.carousel-item.square-image img {
+    width: 80%;
+    /* Ограничиваем ширину */
+    height: 80%;
+    /* Ограничиваем высоту */
+    object-fit: cover;
+    /* Заполняем область с обрезкой */
+}
+
+@media (max-width: 768px) {
+    .carousel-container {
+        height: calc(100vh - 200px);
+        min-height: 300px;
+        margin-bottom: 40px;
+    }
+    .carousel-item.square-image img {
+        width: 95%;
+        height: 95%;
+    }
+}

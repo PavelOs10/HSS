@@ -6,6 +6,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'ваш_секретный_ключ'
 DEBUG = True
 ALLOWED_HOSTS = ['*']
+TELEGRAM_BOT_TOKEN = '7644619767:AAHiP4e9XI6olKWbU_yd_OTpHBiXIDN_I10'
+TELEGRAM_CHAT_ID = '-1002664023879'
 
 INSTALLED_APPS = [
     'django.contrib.admin',

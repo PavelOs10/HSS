@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Review, News, PhotoReport, ReportImage, Teacher, Contact  # Добавлен ReportImage
+from .models import Review, News, PhotoReport, ReportImage, Teacher, Contact, Application  # Добавлен ReportImage
 
 # Определяем инлайн-класс ПЕРВЫМ
 class ReportImageInline(admin.TabularInline):
@@ -31,3 +31,8 @@ class TeacherAdmin(admin.ModelAdmin):
 class ContactAdmin(admin.ModelAdmin):
     list_display = ("phone", "address")
     search_fields = ("phone", "address")
+
+@admin.register(Application)
+class ApplicationAdmin(admin.ModelAdmin):
+    list_display = ("name", "phone", "created_at")
+    search_fields = ("name", "phone")
