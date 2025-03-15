@@ -1,7 +1,8 @@
 from django.db import models
-from django.db.models import ImageField
+from PIL import Image
+from io import BytesIO
+from django.core.files.base import ContentFile
 
-# Перенесите модель Review в начало файла
 class Review(models.Model):
     name = models.CharField(max_length=100, verbose_name="Имя")
     text = models.TextField(verbose_name="Текст отзыва")
@@ -31,31 +32,56 @@ class PhotoReport(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
-    main_image = models.ImageField(upload_to='photo_reports/')  # Убедитесь, что поле есть
+    main_image = models.ImageField(
+        upload_to='photo_reports/',
+        verbose_name='Основное изображение',
+        help_text='Первое изображение в карусели'
+    )
 
     def __str__(self):
         return self.title
 
-from django.db import models
-
-# main/models.py
 class ReportImage(models.Model):
     report = models.ForeignKey(
-        'PhotoReport', 
+        PhotoReport,
         on_delete=models.CASCADE,
         related_name='images'
     )
     image = models.ImageField(
         upload_to='photo_reports/',
-        width_field='width',    # Автоматическое заполнение ширины
-        height_field='height'   # Автоматическое заполнение высоты
+        width_field='width',
+        height_field='height'
     )
-    width = models.PositiveIntegerField(editable=False, null=True)  # Временно разрешаем null
-    height = models.PositiveIntegerField(editable=False, null=True) # Временно разрешаем null
+    width = models.PositiveIntegerField(editable=False, null=True)
+    height = models.PositiveIntegerField(editable=False, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    thumbnail = models.ImageField(upload_to='photo_thumbs/', blank=True)
 
     class Meta:
         ordering = ['created_at']
+
+    def save(self, *args, **kwargs):
+        if not self.thumbnail:
+            self.create_thumbnail()
+        super().save(*args, **kwargs)
+
+    def create_thumbnail(self):
+        image = Image.open(self.image)
+        
+        width, height = image.size
+        new_width = int(width / 2)
+        new_height = int(height / 2)
+        
+        image.thumbnail((new_width, new_height), Image.Resampling.LANCZOS)
+        
+        thumb_io = BytesIO()
+        image.save(thumb_io, format='WEBP', quality=85)
+        
+        self.thumbnail.save(
+            f"{self.image.name.split('.')[0]}_thumb.webp",
+            ContentFile(thumb_io.getvalue()),
+            save=False
+        )
 
 class Teacher(models.Model):
     name = models.CharField(max_length=200, verbose_name="ФИО")
