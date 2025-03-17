@@ -111,3 +111,12 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 });
+
+function initScroll() {
+    const mainContent = document.querySelector('.main-content.photo-reports-page');
+    if (mainContent) {
+        mainContent.style.overflowY = 'auto';
+        document.body.style.overflow = 'hidden';
+    }
+}
+document.addEventListener('DOMContentLoaded', initScroll);

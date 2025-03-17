@@ -44,7 +44,7 @@ def news(request):
 
 def photo_report_detail(request, pk):
     report = get_object_or_404(PhotoReport, pk=pk)
-    return render(request, 'main/photo_carousel.html', {'report': report})
+    return render(request, 'main/photo_report_detail.html', {'report': report})
 
 def news_detail(request, pk):
     news_item = get_object_or_404(News, pk=pk)

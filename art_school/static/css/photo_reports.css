@@ -1,13 +1,13 @@
 .main-content {
-    overflow-y: auto !important;
     height: calc(100vh - 120px);
 }
 
 .main-content.photo-reports-page {
     overflow-y: auto !important;
     height: calc(100vh - 160px);
-    /* Учитываем высоту навбара и футера */
     padding-bottom: 20px !important;
+    position: relative;
+    /* Добавьте это */
 }
 
 .masonry-grid {
