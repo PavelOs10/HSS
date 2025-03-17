@@ -1,17 +1,6 @@
 {% extends 'main/base.html' %} {% load static %} {% block title %}Фотоотчеты{% endblock %} {% block head %}
-<link href="{% static 'css/photo_reports.css' %}" rel="stylesheet">
-<style>
-    .placeholder-image {
-        height: 200px;
-        background: #f8f9fa;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #6c757d;
-    }
-</style>
-{% endblock %} {% block content %}
-<div class="main-content">
+<link href="{% static 'css/photo_reports.css' %}" rel="stylesheet"> {% endblock %} {% block content %}
+<div class="main-content photo-reports-page">
     <div class="container mt-3">
         <h2 class="text-center my-4">Фотоотчеты</h2>
 
@@ -49,8 +38,12 @@
 {% endblock %} {% block scripts %}
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        document.querySelectorAll('.photo-report-card').forEach((card, index) => {
-            setTimeout(() => card.classList.add('show'), index * 100);
+        // Новая анимация для masonry-элементов
+        document.querySelectorAll('.masonry-item').forEach((item, index) => {
+            setTimeout(() => {
+                item.style.opacity = '1';
+                item.style.transform = 'translateY(0)';
+            }, index * 100);
         });
     });
 </script>

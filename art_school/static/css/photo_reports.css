@@ -1,7 +1,20 @@
+.main-content {
+    overflow-y: auto !important;
+    height: calc(100vh - 120px);
+}
+
+.main-content.photo-reports-page {
+    overflow-y: auto !important;
+    height: calc(100vh - 160px);
+    /* Учитываем высоту навбара и футера */
+    padding-bottom: 20px !important;
+}
+
 .masonry-grid {
     columns: 3 300px;
     gap: 1.5rem;
     margin: 2rem 0;
+    min-height: 500px;
 }
 
 .masonry-item {
@@ -70,6 +83,9 @@
     }
     .overlay h5 {
         font-size: 1rem;
+    }
+    .main-content.photo-reports-page {
+        height: calc(100vh - 140px);
     }
 }
 

@@ -79,16 +79,6 @@ document.querySelectorAll('.news-card').forEach(card => {
     });
 });
 
-// Обработка фотоотчетов
-document.querySelectorAll('.photo-report-card').forEach(card => {
-    card.addEventListener('click', function() {
-        const images = JSON.parse(this.dataset.images);
-        const carousel = createCarousel(images);
-        document.querySelector('#photoCarouselModal .modal-body').innerHTML = carousel;
-        new bootstrap.Modal(document.getElementById('photoCarouselModal')).show();
-    });
-});
-
 function updateContentPadding() {
     const footer = document.querySelector('footer');
     const mainContent = document.querySelector('.main-content');
