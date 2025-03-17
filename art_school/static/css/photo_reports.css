@@ -13,12 +13,20 @@
 .masonry-grid {
     columns: 3 300px;
     gap: 1.5rem;
-    margin: 2rem 0;
+    width: 100% !important;
+    margin: 0 auto;
     min-height: 500px;
+}
+
+.photo-report-detail .masonry-item {
+    width: 400px !important;
+    /* Или нужный размер */
 }
 
 .masonry-item {
     break-inside: avoid;
+    width: 400px !important;
+    /* Соответствует columnWidth в Masonry */
     margin-bottom: 1.5rem;
     position: relative;
     border-radius: 12px;

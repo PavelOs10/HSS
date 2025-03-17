@@ -38,12 +38,17 @@
 {% endblock %} {% block scripts %}
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        // Новая анимация для masonry-элементов
-        document.querySelectorAll('.masonry-item').forEach((item, index) => {
-            setTimeout(() => {
-                item.style.opacity = '1';
-                item.style.transform = 'translateY(0)';
-            }, index * 100);
+        const grids = document.querySelectorAll('.masonry-grid');
+
+        grids.forEach(grid => {
+            imagesLoaded(grid, () => {
+                new Masonry(grid, {
+                    itemSelector: '.masonry-item',
+                    columnWidth: 300,
+                    gutter: 15,
+                    fitWidth: true
+                });
+            });
         });
     });
 </script>

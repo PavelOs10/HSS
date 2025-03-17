@@ -28,20 +28,23 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function initVanta() {
-    return VANTA.CLOUDS({
+    return VANTA.BIRDS({
         el: "#vanta-bg",
         mouseControls: true,
         touchControls: true,
         gyroControls: false,
         minHeight: 200.00,
         minWidth: 200.00,
-        skyColor: 0x7A869A,
-        cloudColor: 0xB0C4DE,
-        cloudShadowColor: 0x5A5F69,
-        sunColor: 0x7A869A,
-        sunGlareColor: 0x7A869A,
-        sunlightColor: 0x7A869A,
-        speed: 0.5
+        scale: 1.00,
+        scaleMobile: 1.00,
+        backgroundColor: 0x9CCDF9, // Цвет фона
+        color1: 0xffffff, // Цвет птиц
+        color2: 0xB0C4DE, // Дополнительный цвет
+        birdSize: 1.5, // Размер птиц
+        wingSpan: 40, // Размах крыльев
+        speedLimit: 4, // Скорость
+        separation: 50, // Расстояние между птицами
+        quantity: 4 // Количество птиц
     });
 }
 

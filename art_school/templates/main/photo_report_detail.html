@@ -28,7 +28,7 @@
     <div class="masonry-grid">
         <!-- Главное изображение -->
         <div class="masonry-item">
-            <img src="{{ report.main_image.url }}" class="gallery-image img-fluid" alt="{{ report.title }}" loading="lazy">
+            <img src="{{ report.main_image.url }}" class="gallery-image img-fluid" alt="{{ report.title }}" loading="eager" style="width: 100%">
         </div>
 
         <!-- Остальные изображения -->
@@ -51,14 +51,22 @@
     </div>
 </div>
 {% endblock %} {% block scripts %}
+<script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        // Инициализация masonry
-        const masonryGrid = new Masonry('.masonry-grid', {
-            itemSelector: '.masonry-item',
-            columnWidth: 300,
-            gutter: 15,
-            fitWidth: true
+        const grid = document.querySelector('.masonry-grid');
+
+        imagesLoaded(grid, function() {
+            // Инициализация Masonry после загрузки изображений
+            new Masonry(grid, {
+                itemSelector: '.masonry-item',
+                columnWidth: 300,
+                gutter: 15,
+                fitWidth: true
+            });
+
+            // Форсируем пересчёт после инициализации
+            setTimeout(() => masonry.layout(), 500);
         });
 
         // Обработчик клика для увеличения
@@ -74,6 +82,25 @@
         // Закрытие модального окна
         document.querySelector('.image-modal').addEventListener('click', (e) => {
             e.target.style.display = 'none';
+        });
+    });
+</script>
+<script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const grid = document.querySelector('.masonry-grid');
+
+        // Ждем загрузки ВСЕХ изображений
+        imagesLoaded(grid, () => {
+            const masonry = new Masonry(grid, {
+                itemSelector: '.masonry-item',
+                columnWidth: 400, // Совпадает с CSS-шириной .masonry-item
+                gutter: 15,
+                fitWidth: true
+            });
+
+            // Форсируем обновление сетки после рендера
+            setTimeout(() => masonry.layout(), 100);
         });
     });
 </script>
