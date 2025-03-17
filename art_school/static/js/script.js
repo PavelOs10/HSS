@@ -89,27 +89,6 @@ document.querySelectorAll('.photo-report-card').forEach(card => {
     });
 });
 
-function createCarousel(images) {
-    let items = '';
-    images.forEach((img, index) => {
-        items += `
-        <div class="carousel-item ${index === 0 ? 'active' : ''}">
-            <img src="${img}" class="d-block w-100" alt="Фотоотчет">
-        </div>`;
-    });
-
-    return `
-    <div id="photoCarousel" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">${items}</div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#photoCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#photoCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon"></span>
-        </button>
-    </div>`;
-}
-
 function updateContentPadding() {
     const footer = document.querySelector('footer');
     const mainContent = document.querySelector('.main-content');
